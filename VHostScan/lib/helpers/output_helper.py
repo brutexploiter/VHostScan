@@ -9,7 +9,7 @@ from ..core.discovered_host import *
 from .file_helper import *
 
 
-class output_helper(object):
+class output_helper:
     def __init__(self, scanner, arguments):
         self.scanner = scanner
         self.arguments = arguments
