@@ -44,7 +44,7 @@ def _ssl_wrap_socket(sock, keyfile=None, certfile=None, cert_reqs=None,
 connection.ssl_wrap_socket = _ssl_wrap_socket
 
 
-class virtual_host_scanner(object):
+class virtual_host_scanner:
     """Virtual host scanning class
 
     Virtual host scanner has the following properties:
