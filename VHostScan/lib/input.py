@@ -2,7 +2,7 @@
 from argparse import ArgumentParser
 
 
-class cli_argument_parser(object):
+class cli_argument_parser:
     """ __Doc__ append to parser class """
     def __init__(self):
         self._parser = self.setup_parser()
