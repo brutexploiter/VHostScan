@@ -1,4 +1,4 @@
-class discovered_host(object):
+class discovered_host:
     """
     Auxiliary class used for storing discovered hosts
     """
