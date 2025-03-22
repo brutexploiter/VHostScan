@@ -4,16 +4,15 @@ import sys
 import dns.resolver
 from argparse import ArgumentParser
 from socket import gethostbyaddr
-from pkg_resources import resource_filename
-from .lib.core.virtual_host_scanner import virtual_host_scanner
-from .lib.helpers.output_helper import output_helper
-from .lib.helpers.file_helper import load_random_user_agents
-from .lib.helpers.wordlist_helper import WordList
-from .lib.core.__version__ import __version__
-from .lib.input import cli_argument_parser
+from importlib_resources import files
+from VHostScan.lib.core.virtual_host_scanner import virtual_host_scanner
+from VHostScan.lib.helpers.output_helper import output_helper
+from VHostScan.lib.helpers.file_helper import load_random_user_agents
+from VHostScan.lib.helpers.wordlist_helper import WordList
+from VHostScan.lib.core.__version__ import __version__
+from VHostScan.lib.input import cli_argument_parser
 
-DEFAULT_WORDLIST_FILE = resource_filename(
-    'VHostScan', 'wordlists/virtual-host-scanning.txt')
+DEFAULT_WORDLIST_FILE = str(files("VHostScan") / "wordlists/virtual-host-scanning.txt")
 
 
 def print_banner():
@@ -74,7 +73,7 @@ def main():
     if not arguments.no_lookup:
         try:
             print("[+] Resolving DNS for additional wordlist entries")
-            for ip in dns.resolver.query(arguments.target_hosts, 'A'):
+            for ip in dns.resolver.resolve(arguments.target_hosts, 'A'):
                 host, aliases, ips = gethostbyaddr(str(ip))
                 wordlist.append(str(ip))
                 wordlist.append(host)
@@ -108,7 +107,7 @@ def main():
 
     if(arguments.output_normal):
         output.write_normal(arguments.output_normal)
-        print("\n[+] Writing normal ouptut to {}".format(
+        print("\n[+] Writing normal output to {}".format(
             arguments.output_normal))
 
     if(arguments.output_json):
@@ -118,8 +117,8 @@ def main():
 
     if(arguments.output_grepable):
         output.output_grepable(arguments.output_grepable)
-        print("\n[+] Writing grepable ouptut to {}".format(
-            arguments.output_json))
+        print("\n[+] Writing grepable output to {}".format(
+            arguments.output_grepable))
 
 
 if __name__ == "__main__":
