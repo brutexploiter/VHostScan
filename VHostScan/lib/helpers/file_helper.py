@@ -7,7 +7,7 @@ DEFAULT_UA_LIST = resource_filename(
     'VHostScan', 'lib/ua-random-list.txt')
 
 
-class file_helper(object):
+class file_helper:
     """description of class"""
     def __init__(self, output_file):
         self.output_file = output_file
