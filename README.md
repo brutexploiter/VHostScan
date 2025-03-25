@@ -38,6 +38,10 @@ $ python3 setup.py install
 Dependencies will then be installed and VHostScan will be added to your path. If there is an issue regarding
 running `python3 setup.py build_ext`, you will need to reinstall `numpy` using `pip uninstall numpy` and `pip install numpy==1.12.0`. This should resolve the issue as there are sometimes issues with numpy being installed through setup.py.
 
+```bash
+poetry install --no-root
+poetry run python -m VHostScan.VHostScan -h
+```
 # Usage
 
 | Argument        | Description |
